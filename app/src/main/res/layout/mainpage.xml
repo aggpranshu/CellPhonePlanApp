@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:hint="Enter Phone number"
+        android:ems="10"
+        android:id="@+id/phoneNumber"
+        android:layout_marginTop="63dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/serviceProvider"
+        android:layout_alignStart="@+id/serviceProvider" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/serviceProvider"
+        android:hint="Enter service provider"
+        android:layout_below="@+id/phoneNumber"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/serviceProvider"
+        android:id="@+id/linearLayout2">
+
+        <CalendarView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/calendarView2"
+            android:layout_centerHorizontal="true"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/linearLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true">
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:gravity="center_horizontal|center_vertical"
+                android:id="@+id/submit"
+                android:layout_gravity="center"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/phoneNumber"
+        android:layout_alignEnd="@+id/phoneNumber" />
+
+</RelativeLayout>
