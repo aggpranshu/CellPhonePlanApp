@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.mainpage);
         dateSend = initializeCalender();
 
+
+        //I have added this comment
         b = (Button) findViewById(R.id.submit);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.planets_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
     }
 
@@ -70,16 +72,14 @@ public class MainActivity extends AppCompatActivity {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 
-
-
-               // Date date1 = cal.getTime();
+                // Date date1 = cal.getTime();
                 String currentDate = dateFormat.format(new Date(view.getDate()));
 
                 date.add(dayOfMonth);
                 date.add(month);
                 date.add(year);
 
-                Toast.makeText(getApplicationContext(), currentDate , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), currentDate, Toast.LENGTH_SHORT).show();
                 //Toast.makeText(getApplicationContext(), dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_SHORT).show();
 
             }
