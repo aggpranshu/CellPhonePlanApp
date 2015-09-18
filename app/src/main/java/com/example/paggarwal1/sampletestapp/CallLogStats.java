@@ -1,13 +1,7 @@
 package com.example.paggarwal1.sampletestapp;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.CursorLoader;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.CallLog;
-import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,8 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
-import static android.provider.CallLog.Calls.CONTENT_URI;
 
 
 /**
@@ -30,14 +22,13 @@ public class CallLogStats extends Activity {
         setContentView(R.layout.activity_main);
 
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
-                arrayList = getIntent().getExtras().getIntegerArrayList("Date");
+        arrayList = getIntent().getExtras().getIntegerArrayList("Date");
 
-        if(arrayList.isEmpty())
-        {
+        if (arrayList.isEmpty()) {
 
         }
         Log.i("Random", arrayList.toString());
-        Toast.makeText(getApplicationContext(),"hello",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_SHORT).show();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -48,7 +39,12 @@ public class CallLogStats extends Activity {
         String currentDate = dateFormat.format(date);
 
 
+        Log.i("New date", currentDate);
+    }
 
-        Log.i("New date",currentDate);
+
+    public void hello(long diffInDays)
+    {
+        Log.i("hello", String.valueOf(diffInDays));
     }
 }

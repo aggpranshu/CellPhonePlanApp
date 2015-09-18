@@ -39,15 +39,15 @@
         android:layout_below="@+id/linearLayout">
 
         <CalendarView
+            android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/calendarView" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
-        android:id="@+id/linearLayout">
+        android:layout_height="300dp">
 
         <ScrollView
             android:id="@+id/scrollView"

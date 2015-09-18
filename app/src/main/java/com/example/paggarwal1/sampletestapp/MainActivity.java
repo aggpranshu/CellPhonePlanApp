@@ -1,67 +1,71 @@
 package com.example.paggarwal1.sampletestapp;
 
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.CallLog;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.Spinner;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import static android.provider.CallLog.Calls.CONTENT_URI;
 
 public class MainActivity extends AppCompatActivity {
-    Button b;
-    TextView t;
-    CalendarView calendarView;
-    CallLogStats callLogDetails;
-    ArrayList<Integer> date = new ArrayList<Integer>();
-    ArrayList<Integer> dateSend = new ArrayList<Integer>();
+    Button dateButton, submit;
+    TextView serviceProvider;
+    EditText phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
-        dateSend = initializeCalender();
 
-
-        //I have added this comment
-        b = (Button) findViewById(R.id.submit);
-        b.setOnClickListener(new View.OnClickListener() {
+        dateButton = (Button) findViewById(R.id.dateButton);
+        dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CallLogStats.class);
-                intent.putIntegerArrayListExtra("Date", dateSend);
-                startActivity(intent);
+
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        /*submit = (Button) findViewById(R.id.submit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CallLogStats.class);
+                intent.putIntegerArrayListExtra("Date", );
+                startActivity(intent);
+            }
+        });
+*/
+        phoneNumber = (EditText) findViewById(R.id.phoneNumber);
+        serviceProvider = (TextView) findViewById(R.id.phoneCarrier);
+
+        TelephonyManager tMgr = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+
+        serviceProvider.setText(tMgr.getNetworkOperatorName());
+
+      /*  Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.planets_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(adapter);*/
+    }
+
+
+    /*private void initializeDate() {
+        datePicker = (DatePicker) findViewById(R.id.calendarView);
     }
 
     private ArrayList initializeCalender() {
 
 
-        calendarView = (CalendarView) findViewById(R.id.calendarView2);
+        //  calendarView = (CalendarView) findViewById(R.id.calendarView2);
         calendarView.setShowWeekNumber(false);
 
 
@@ -88,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         return date;
 
     }
-
+*/
 }
 
 
