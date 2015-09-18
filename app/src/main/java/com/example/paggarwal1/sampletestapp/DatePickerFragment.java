@@ -3,6 +3,7 @@ package com.example.paggarwal1.sampletestapp;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
@@ -19,13 +20,14 @@ import static java.util.Calendar.YEAR;
  */
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
-    long diffInMilis , diffInDays;
+    long diffInMilis, diffInDays;
+    CallLogStats callLogStats = new CallLogStats();
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
         final Calendar c = Calendar.getInstance();
         int year = c.get(YEAR);
-        Log.i("years", String.valueOf(year));
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
@@ -45,21 +47,19 @@ public class DatePickerFragment extends DialogFragment
         if (calendar.getTime().before(Calendar.getInstance().getTime())) {
             diffInMilis = Calendar.getInstance().getTimeInMillis() - calendar.getTimeInMillis();
             diffInDays = diffInMilis / (24 * 60 * 60 * 1000);
-            if (diffInDays > 21)
-
-            {
+            if (diffInDays > 21) {
                 String promptMessage = "Cannot fetch call logs for " + diffInDays + " days right now. Please wait for "
                         + String.valueOf(diffInDays - 21) + "days";
-
-                new CallLogStats().hello(diffInDays);
-
                 Toast.makeText(getContext(), promptMessage, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), "Day before", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), CallLogStats.class);
+                intent.putExtra("date",calendar.getTime());
+                startActivity(intent);
             }
-        }
-            else {
-                Toast.makeText(getContext(), "Day after", Toast.LENGTH_SHORT).show();
-            }
+        } else {
+            Toast.makeText(getContext(), "Day after", Toast.LENGTH_SHORT).show();
+           callLogStats.hello(calendar.getTime(),"after");
         }
     }
+}
