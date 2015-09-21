@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.provider.CallLog;
 import android.util.Log;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
