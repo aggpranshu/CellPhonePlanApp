@@ -87,8 +87,8 @@ public class CallLogStats extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                //sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- " + dir + " \nCall Date:--- " + callDayTime + " \nCall duration in sec :--- " + callDuration);
-                //sb.append("\n----------------------------------");
+                sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- " + dir + " \nCall Date:--- " + callDayTime + " \nCall duration in sec :--- " + callDuration);
+                sb.append("\n----------------------------------");
             }
             //    sb.append(sb.length());
         }
