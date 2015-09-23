@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.provider.CallLog;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,14 +19,14 @@ import java.util.Date;
  */
 public class CallLogStats extends Activity {
 
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Date d = (Date)getIntent().getSerializableExtra("date");
-        hello(d,"before");
+        Date d = (Date) getIntent().getSerializableExtra("date");
+        hello(d, "before");
     }
-
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public void hello(Date d, String whenItHappened) {
         if (whenItHappened.equals("before")) {
@@ -66,9 +70,25 @@ public class CallLogStats extends Activity {
                     dir = "MISSED";
                     break;
             }
-            if (dir == "OUTGOING" && callDayTime.compareTo(d)>0) {
-                sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- " + dir + " \nCall Date:--- " + callDayTime + " \nCall duration in sec :--- " + callDuration);
-                sb.append("\n----------------------------------");
+            if (dir == "OUTGOING" && callDayTime.compareTo(d) > 0) {
+
+                //Code to add the data of the Call Logs into a file
+                try {
+                    FileOutputStream fileout = openFileOutput("CallLogStats.txt", MODE_PRIVATE);
+                    OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
+                    outputWriter.write(phNumber + "," + callDayTime + "," + duration + "\n");
+                    outputWriter.close();
+                    File path = getApplicationContext().getFilesDir();
+
+                    //display file saved message
+                    Toast.makeText(getBaseContext(), "File saved successfully!",
+                            Toast.LENGTH_SHORT).show();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- " + dir + " \nCall Date:--- " + callDayTime + " \nCall duration in sec :--- " + callDuration);
+                //sb.append("\n----------------------------------");
             }
             //    sb.append(sb.length());
         }
