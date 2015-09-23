@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -19,11 +20,14 @@ import java.util.Date;
  */
 public class CallLogStats extends Activity {
 
+    TextView t;
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+      t = (TextView) findViewById(R.id.textview1);
         Date d = (Date) getIntent().getSerializableExtra("date");
         hello(d, "before");
     }
@@ -51,6 +55,9 @@ public class CallLogStats extends Activity {
         int date = managedCursor.getColumnIndex(CallLog.Calls.DATE);
         int duration = managedCursor.getColumnIndex(CallLog.Calls.DURATION);
         sb.append("Call Log :");
+
+        Log.i("date", d.toString());
+        Log.i("value", String.valueOf(managedCursor.getCount()));
         while (managedCursor.moveToNext()) {
             String phNumber = managedCursor.getString(number);
             String callType = managedCursor.getString(type);
@@ -70,10 +77,10 @@ public class CallLogStats extends Activity {
                     dir = "MISSED";
                     break;
             }
-            if (dir == "OUTGOING" && callDayTime.compareTo(d) > 0) {
+            if (dir == "OUTGOING" && callDayTime.compareTo(d)>0 ) {
 
                 //Code to add the data of the Call Logs into a file
-                try {
+                /*try {
                     FileOutputStream fileout = openFileOutput("CallLogStats.txt", MODE_PRIVATE);
                     OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
                     outputWriter.write(phNumber + "," + callDayTime + "," + duration + "\n");
@@ -81,18 +88,19 @@ public class CallLogStats extends Activity {
                     File path = getApplicationContext().getFilesDir();
 
                     //display file saved message
-                    Toast.makeText(getBaseContext(), "File saved successfully!",
-                            Toast.LENGTH_SHORT).show();
+                    *//*Toast.makeText(getBaseContext(), "File saved successfully!",
+                            Toast.LENGTH_SHORT).show();*//*
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-                //sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- " + dir + " \nCall Date:--- " + callDayTime + " \nCall duration in sec :--- " + callDuration);
-                //sb.append("\n----------------------------------");
+                }*/
+                sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- " + dir + " \nCall Date:--- " + callDayTime + " \nCall duration in sec :--- " + callDuration);
+                sb.append("\n----------------------------------");
             }
             //    sb.append(sb.length());
         }
         Log.i("records", sb.toString());
+        t.setText(sb.toString());
         // managedCursor.close();
 
     }
