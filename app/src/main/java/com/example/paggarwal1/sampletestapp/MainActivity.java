@@ -1,6 +1,7 @@
 package com.example.paggarwal1.sampletestapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.CallLog;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.content.Intent;
 
 import java.util.Date;
 
@@ -34,6 +36,18 @@ public class MainActivity extends AppCompatActivity {
                 newFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
+
+    /*  Button messageButton =(Button)findViewById(R.id.messageButton);
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i =new Intent(MainActivity.this, MsgLogStats.class);
+                startActivity(i);
+            }
+        });
+*/
+
 
         /*submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {

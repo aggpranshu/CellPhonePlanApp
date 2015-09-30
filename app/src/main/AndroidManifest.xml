@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".CallLogStats"></activity>
+        <activity android:name=".MsgLogStats"></activity>
     </application>
-
 </manifest>
+
+
+

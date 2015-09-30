@@ -54,6 +54,7 @@ public class CallLogStats extends Activity {
         int type = managedCursor.getColumnIndex(CallLog.Calls.TYPE);
         int date = managedCursor.getColumnIndex(CallLog.Calls.DATE);
         int duration = managedCursor.getColumnIndex(CallLog.Calls.DURATION);
+        int data= managedCursor.getColumnIndex(CallLog.Calls.DATA_USAGE);
         sb.append("Call Log :");
 
         Log.i("date", d.toString());
@@ -64,6 +65,7 @@ public class CallLogStats extends Activity {
             String callDate = managedCursor.getString(date);
             Date callDayTime = new Date(Long.valueOf(callDate));
             String callDuration = managedCursor.getString(duration);
+            //int data_usage= managedCursor.getColumnIndex(CallLog.Calls.DATA_USAGE);
             String dir = null;
             int dircode = Integer.parseInt(callType);
             switch (dircode) {
@@ -94,7 +96,7 @@ public class CallLogStats extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }*/
-                sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- " + dir + " \nCall Date:--- " + callDayTime + " \nCall duration in sec :--- " + callDuration);
+                sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- " + dir + " \nCall Date:--- " + callDayTime + " \nCall duration in sec :--- "+callDuration);
                 sb.append("\n----------------------------------");
             }
             //    sb.append(sb.length());

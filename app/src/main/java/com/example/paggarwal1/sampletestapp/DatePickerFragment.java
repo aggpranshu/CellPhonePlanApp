@@ -54,8 +54,10 @@ public class DatePickerFragment extends DialogFragment
             } else {
                 Toast.makeText(getContext(), "Day before", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), CallLogStats.class);
+                Intent intent1=new Intent(getActivity(),MsgLogStats.class);
                 intent.putExtra("date",calendar.getTime());
                 startActivity(intent);
+                startActivity(intent1);
             }
         } else {
             Toast.makeText(getContext(), "Day after", Toast.LENGTH_SHORT).show();
