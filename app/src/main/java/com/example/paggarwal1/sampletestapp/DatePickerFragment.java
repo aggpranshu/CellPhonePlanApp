@@ -30,7 +30,6 @@ public class DatePickerFragment extends DialogFragment
         int year = c.get(YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-
         // Create a new instance of DatePickerDialog and return it
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
@@ -51,15 +50,28 @@ public class DatePickerFragment extends DialogFragment
                 String promptMessage = "Cannot fetch call logs for " + diffInDays + " days right now. Please wait for "
                         + String.valueOf(diffInDays - 21) + "days";
                 Toast.makeText(getContext(), promptMessage, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "Day before", Toast.LENGTH_SHORT).show();
+            }
+
+            else {
+                   Toast.makeText(getContext(), "Day before", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), CallLogStats.class);
                 intent.putExtra("date",calendar.getTime());
+                intent.putExtra("whenItHappened", "before");
                 startActivity(intent);
             }
-        } else {
+        }
+
+        else if(calendar.getTime().equals(Calendar.getInstance().getTime()))
+        {
+            Toast.makeText(getContext(), "Please select a date before the current date", Toast.LENGTH_SHORT).show();
+        }
+
+        else {
             Toast.makeText(getContext(), "Day after", Toast.LENGTH_SHORT).show();
-           callLogStats.hello(calendar.getTime(),"after");
+            Intent intent = new Intent(getActivity(), CallLogStats.class);
+            intent.putExtra("date",calendar.getTime());
+            intent.putExtra("whenItHappened", "after");
+            startActivity(intent);
         }
     }
 }
