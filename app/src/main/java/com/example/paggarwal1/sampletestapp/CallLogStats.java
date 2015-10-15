@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -55,7 +56,7 @@ public class CallLogStats extends Activity {
 
 
     public void fetchCallRecords(Date d) {
-        String selection = "type = 2";
+        String selection = "type = 2 ";
         ContentResolver resolver = getApplicationContext().getContentResolver();
         Cursor cur = resolver.query(CallLog.Calls.CONTENT_URI, projection, selection, null, null);
         while (cur.moveToNext()) {
