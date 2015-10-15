@@ -1,3 +1,4 @@
+/*
 package com.example.paggarwal1.sampletestapp;
 
 import android.app.Activity;
@@ -15,9 +16,11 @@ import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+*/
 /**
  * Created by RGupta1 on 9/28/2015.
- */
+ *//*
+
 public class MsgLogStats extends Activity {
 
     TextView textView;
@@ -71,3 +74,4 @@ public class MsgLogStats extends Activity {
     }
 
 }
+*/
